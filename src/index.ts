@@ -1,6 +1,10 @@
-import { serve } from "https://deno.land/std@0.85.0/http/server.ts";
+import { serve } from "serve";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
+await config({ export: true });
 
 let port = parseInt(Deno.env.get("PORT") ?? "8000");
+
+console.log(Deno.env.get("PORT"));
 const s = serve({ port });
 
 console.log(`http://localhost:${port}/`);
