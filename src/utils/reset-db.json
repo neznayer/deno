@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Buy milk",
+    "content": "Buy milk from local supermarket",
+    "status": "DONE"
+  },
+  {
+    "title": "Do yoga",
+    "content": "Dont forget the meditaion part!",
+    "status": "DOING"
+  },
+  {
+    "title": "Climb mount Fuji",
+    "content": "Wait until summer for that",
+    "status": "TODO"
+  }
+]
