@@ -5,6 +5,8 @@ const router = new Router();
 
 const client = new MongoClient();
 
+console.log(Deno.env.get("MONGOUSER"));
+
 await client.connect(Deno.env.get("MONGO_URL") as string);
 
 const db = client.database("test");
