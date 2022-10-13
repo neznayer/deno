@@ -1,14 +1,17 @@
-import { serve } from "serve";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
-await config({ export: true });
+import { Application } from "oak";
+import config from "./utils/config.ts";
+import router from "./routers/todos.router.ts";
+import { periodicallyResetDB } from "./utils/periodically-reset.ts";
 
-let port = parseInt(Deno.env.get("PORT") ?? "8000");
+const port: number = parseInt(Deno.env.get("PORT") ?? config.PORT ?? "8000");
 
-console.log(Deno.env.get("PORT"));
-const s = serve({ port });
+const app = new Application();
+
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+periodicallyResetDB(60 * 1000 * 15);
 
 console.log(`http://localhost:${port}/`);
 
-for await (const req of s) {
-  req.respond({ body: "Choo Choo! Welcome to your Deno app\n" });
-}
+await app.listen({ port });
