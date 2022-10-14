@@ -12,7 +12,7 @@ export async function resetDB() {
 
   const dummyDB = await getJson("src/utils/reset-db.json");
 
-  await client.connect(Deno.env.get("MONGO_URI") as string);
+  await client.connect(Deno.env.get("MONGO_URL") as string);
 
   const db = client.database("test");
 
